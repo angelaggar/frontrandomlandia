@@ -48,14 +48,15 @@ export default function Sandia() {
     if (sandiasByTopic.length === 0) return;
     const randomSandiaIndex = Math.floor(Math.random() * sandiasByTopic.length);
     const randomSandia = sandiasByTopic[randomSandiaIndex];
-    if (testCt === 10 && topic == "default") { //cambiar a !default cuando haya mas sandias
+    if (testCt === 10 && topic == "default") {
+      //cambiar a !default cuando haya mas sandias
       setShowTest(true);
     }
 
     if (showTest) {
       //funcion que ejecuta el test
       setTestCt(1);
-      setShowTest(false);// VOLVER A ACTIVAR
+      setShowTest(false); // VOLVER A ACTIVAR
     }
     return randomSandia;
   };
@@ -122,7 +123,7 @@ export default function Sandia() {
         setCurrent({
           id: "null",
           content:
-            "No hay más sandías disponibles. Explora otros temas o revisa lo que ya has visto."
+            "No hay más sandías disponibles. Explora otros temas o revisa lo que ya has visto.",
         });
         return;
       }
@@ -240,188 +241,200 @@ export default function Sandia() {
   //     </main>
   //   );
 
-   return loading ? (
+  return loading ? (
     <div className="bg-oldwhite h-screen flex justify-center items-center">
       <LoadingState />
     </div>
   ) : (
     // return (
-      <div
+    <div
       className="max-w-screen overflow-hidden flex flex-col sm:gap-5 relative h-screen max-h-screen bg-cover bg-left-bottom lg:bg-center bg-no-repeat font-mont font-semibold text-xl sm:text-2xl"
       style={{
         backgroundImage: `url('${
           background
             ? `/backgrounds/${background}`
             : "/backgrounds/bg-booksflying.webp"
-        }')`
+        }')`,
       }}
     >
       <Navbar />
-      {showTest? (<ModalTest setShowTest={setShowTest} />) : (<div className="sm:p-4 min-h-screen bg-oldwhite/50 sm:bg-transparent">
-        <div
-          id="card-sandia"
-          className="w-full h-full lg:w-[85%]  sm:bg-cream/50 px-3 py-5 lg:mx-auto sm:rounded-xl"
-        >
+      {showTest ? (
+        <ModalTest setShowTest={setShowTest} />
+      ) : (
+        <div className="sm:p-4 min-h-screen bg-oldwhite/50 sm:bg-transparent">
           <div
-            className={`w-full sm:w-full sm:max-w-full flex flex-col items-center gap-4 sm:px-6 sm:gap-16`}
+            id="card-sandia"
+            className="w-full h-full lg:w-[85%]  sm:bg-cream/50 px-3 py-5 lg:mx-auto sm:rounded-xl"
           >
-            <div className="flex justify-between w-full lg:hidden">
-              <div className="w-14 sm:w-20">
-                <TemaContainer />
-              </div>
-              <button
-                onClick={() => router.push("/menu")}
-                className="hover:transform hover:scale-125"
-              >
-                <img src="/close.svg" alt="Close Icon" className="w-10 h-10 " />
-              </button>
-            </div>
-            <div className="flex gap-3">
-              <div className=" hidden lg:grid">
-                <div className="flex justify-start items-start">
-                  <div className="w-14 sm:w-20 sm:h-20">
-                    <TemaContainer />
-                  </div>
+            <div
+              className={`w-full sm:w-full sm:max-w-full flex flex-col items-center gap-4 sm:px-6 sm:gap-16`}
+            >
+              <div className="flex justify-between w-full lg:hidden">
+                <div className="w-14 sm:w-20">
+                  <TemaContainer />
                 </div>
-
                 <button
-                  key="arrowLeftIcon"
-                  onClick={reverseSandia}
-                  className="hover:transform hover:scale-125 hidden lg:flex"
+                  onClick={() => router.push("/menu")}
+                  className="hover:transform hover:scale-125"
                 >
                   <img
-                    src="/icon_arrowleft.svg"
-                    alt="Arrow Left Icon"
-                    className="w-16"
+                    src="/close.svg"
+                    alt="Close Icon"
+                    className="w-10 h-10 "
                   />
                 </button>
               </div>
-              <div className="lg:pt-16">
-                <div className="grid gap-10 sm:border-4 border-yellow-600 rounded-lg sm:bg-white w-full">
-                  <div className="sm:pl-20 sm:pr-8 sm:pt-7 text-center">
-                    <SpeechBubble
-                      text={
-                        showReference ? current?.reference : current?.content
-                      }
-                      height=""
-                      width=""
-                    />
+              <div className="flex gap-3">
+                <div className=" hidden lg:grid">
+                  <div className="flex justify-start items-start">
+                    <div className="w-14 sm:w-20 sm:h-20">
+                      <TemaContainer />
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center px-3">
-                    <img
-                      src={"/RANDY_08.svg"}
-                      alt="randy"
-                      className="w-32 sm:w-40"
-                    />
-                    <div className="flex flex-col gap-3 pr-5">
-                      <div className="flex justify-between gap-4 sm:gap-10">
-                        <button
-                          key="turnIcon"
-                          onClick={handleToggleReference}
-                          className="hover:transform hover:scale-125"
-                        >
-                          <img
-                            src="/icon_turn.svg"
-                            alt="Turn Icon"
-                            className="w-14 h-14 sm:w-24"
-                          />
-                        </button>
 
-                        <button
-                          key="redHeartIcon"
-                          onClick={handleLike}
-                          className="hover:transform hover:scale-125"
-                        >
-                          <img
-                            src={favIcon}
-                            alt="Red Heart Icon"
-                            className="w-12 h-12 sm:w-24"
-                          />
-                        </button>
-                      </div>
-                      <div className="flex justify-between gap-4 sm:hidden">
-                        <button
-                          key="arrowLeftIcon"
-                          onClick={reverseSandia}
-                          className="hover:transform hover:scale-125"
-                        >
-                          <img
-                            src={"/icon_arrowleft.svg"}
-                            alt="Arrow Left Icon"
-                            className="w-12 h-12"
-                          />
-                        </button>
-                        <button
-                          key="turnRightIcon"
-                          onClick={handleNextButton}
-                          className="hover:transform hover:scale-125"
-                        >
-                          <img
-                            src={"/icon_turnright.svg"}
-                            alt="Turn Right Icon"
-                            className="w-12 h-12"
-                          />
-                        </button>
+                  <button
+                    key="arrowLeftIcon"
+                    onClick={reverseSandia}
+                    className="hover:transform hover:scale-125 hidden lg:flex"
+                  >
+                    <img
+                      src="/icon_arrowleft.svg"
+                      alt="Arrow Left Icon"
+                      className="w-16"
+                    />
+                  </button>
+                </div>
+                <div className="lg:pt-16">
+                  <div className="grid gap-10 sm:border-4 border-yellow-600 rounded-lg sm:bg-white w-full">
+                    <div className="sm:pl-20 sm:pr-8 sm:pt-7 text-center">
+                      <SpeechBubble
+                        text={
+                          showReference
+                            ? current?.reference ||
+                              "a ver a ver... deja lo pienso"
+                            : current?.content ||
+                              "a ver a ver... deja lo pienso"
+                        }
+                        //height=""
+                        // width=""
+                      />
+                    </div>
+                    <div className="flex justify-between items-center px-3">
+                      <img
+                        src={"/RANDY_08.svg"}
+                        alt="randy"
+                        className="w-32 sm:w-40"
+                      />
+                      <div className="flex flex-col gap-3 pr-5">
+                        <div className="flex justify-between gap-4 sm:gap-10">
+                          <button
+                            key="turnIcon"
+                            onClick={handleToggleReference}
+                            className="hover:transform hover:scale-125"
+                          >
+                            <img
+                              src="/icon_turn.svg"
+                              alt="Turn Icon"
+                              className="w-14 h-14 sm:w-24"
+                            />
+                          </button>
+
+                          <button
+                            key="redHeartIcon"
+                            onClick={handleLike}
+                            className="hover:transform hover:scale-125"
+                          >
+                            <img
+                              src={favIcon}
+                              alt="Red Heart Icon"
+                              className="w-12 h-12 sm:w-24"
+                            />
+                          </button>
+                        </div>
+                        <div className="flex justify-between gap-4 sm:hidden">
+                          <button
+                            key="arrowLeftIcon"
+                            onClick={reverseSandia}
+                            className="hover:transform hover:scale-125"
+                          >
+                            <img
+                              src={"/icon_arrowleft.svg"}
+                              alt="Arrow Left Icon"
+                              className="w-12 h-12"
+                            />
+                          </button>
+                          <button
+                            key="turnRightIcon"
+                            onClick={handleNextButton}
+                            className="hover:transform hover:scale-125"
+                          >
+                            <img
+                              src={"/icon_turnright.svg"}
+                              alt="Turn Right Icon"
+                              className="w-12 h-12"
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="hidden lg:grid ">
-                <div id="forlg" className="w-20 flex justify-end items-start">
+                <div className="hidden lg:grid ">
+                  <div id="forlg" className="w-20 flex justify-end items-start">
+                    <button
+                      onClick={() => router.push("/menu")}
+                      className="hover:transform hover:scale-125"
+                    >
+                      <img
+                        src="/close.svg"
+                        alt="Close Icon"
+                        className="w-10 h-10 "
+                      />
+                    </button>
+                  </div>
                   <button
-                    onClick={() => router.push("/menu")}
-                    className="hover:transform hover:scale-125"
+                    key="turnRightIcon"
+                    onClick={handleNextButton}
+                    className="hidden lg:flex hover:transform hover:scale-125 justify-end"
                   >
                     <img
-                      src="/close.svg"
-                      alt="Close Icon"
-                      className="w-10 h-10 "
+                      src="/icon_turnright.svg"
+                      alt="Turn Right Icon"
+                      className="w-16 h-16"
                     />
                   </button>
                 </div>
+              </div>
+              <div className="hidden w-full gap-4 sm:flex justify-between lg:hidden">
+                <button
+                  key="arrowLeftIcon"
+                  onClick={reverseSandia}
+                  className="hover:transform hover:scale-125"
+                >
+                  <img
+                    src={"/icon_arrowleft.svg"}
+                    alt="Arrow Left Icon"
+                    className="w-12 h-12"
+                  />
+                </button>
                 <button
                   key="turnRightIcon"
                   onClick={handleNextButton}
-                  className="hidden lg:flex hover:transform hover:scale-125 justify-end"
+                  className="hover:transform hover:scale-125"
                 >
                   <img
-                    src="/icon_turnright.svg"
+                    src={"/icon_turnright.svg"}
                     alt="Turn Right Icon"
-                    className="w-16 h-16"
+                    className="w-12 h-12"
                   />
                 </button>
               </div>
             </div>
-            <div className="hidden w-full gap-4 sm:flex justify-between lg:hidden">
-              <button
-                key="arrowLeftIcon"
-                onClick={reverseSandia}
-                className="hover:transform hover:scale-125"
-              >
-                <img
-                  src={"/icon_arrowleft.svg"}
-                  alt="Arrow Left Icon"
-                  className="w-12 h-12"
-                />
-              </button>
-              <button
-                key="turnRightIcon"
-                onClick={handleNextButton}
-                className="hover:transform hover:scale-125"
-              >
-                <img
-                  src={"/icon_turnright.svg"}
-                  alt="Turn Right Icon"
-                  className="w-12 h-12"
-                />
-              </button>
-            </div>
           </div>
         </div>
-      </div>)}
+      )}
     </div>
-    )
+  );
 }
 
 {

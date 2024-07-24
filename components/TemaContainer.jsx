@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function TemaContainer({ bool, name }) {
+export default function TemaContainer({ bool = false, name = "default" }) {
   const router = useRouter();
 
   const badges = {
@@ -105,14 +105,13 @@ export default function TemaContainer({ bool, name }) {
       />
       {isHovered && (
         <div
-          className={`absolute inset-0 flex justify-center items-centerrounded-full  ${
+          className={`absolute inset-0 flex justify-center items-center rounded-full ${
             name === "default" ? "w-1/2 mx-auto" : ""
           }`}
         >
           <p
             className={`max-h-full max-w-full capitalize ml-20 text-dgreen font-bold text-center text-xl`}
           >
-            {" "}
             {!isMenuRoute && getHoverText(name)}
           </p>
         </div>
@@ -124,9 +123,4 @@ export default function TemaContainer({ bool, name }) {
 TemaContainer.propTypes = {
   bool: PropTypes.bool,
   name: PropTypes.string,
-};
-
-TemaContainer.defaultProps = {
-  bool: false,
-  name: "default",
 };

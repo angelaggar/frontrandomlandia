@@ -1,23 +1,22 @@
-// components/SpeechBubble.js
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const SpeechBubble = ({
   text,
-  trianglePosition,
-  width,
-  height
+  trianglePosition = "left",
+  width = "332.25px",
+  height = "329.34px",
 }) => {
   const triangleClasses = classNames({
     "absolute bottom-[-15px] w-0 h-0 border-t-[15px] border-t-cream border-x-[15px] border-x-transparent": true,
     "left-6": trianglePosition === "left",
-    "right-6": trianglePosition === "right"
+    "right-6": trianglePosition === "right",
   });
 
   const bubbleStyles = {
     width: width,
-    height: height
+    height: height,
   };
 
   return (
@@ -27,7 +26,6 @@ const SpeechBubble = ({
     >
       <div className="overflow-y-auto h-full text-center flex flex-col justify-center py-4 gap-3">
         <p className="w-auto flex text-center">{text}</p>
-        
       </div>
       <div className={triangleClasses}></div>
     </div>
@@ -35,17 +33,10 @@ const SpeechBubble = ({
 };
 
 SpeechBubble.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired || "hola",
   trianglePosition: PropTypes.oneOf(["left", "right"]),
   width: PropTypes.string,
-  height: PropTypes.string
-};
-
-SpeechBubble.defaultProps = {
-  trianglePosition: "left",
-  width: "332.25px", // Default width
-  height: "329.34px", // Default height
-  isMenu: false
+  height: PropTypes.string,
 };
 
 export default SpeechBubble;

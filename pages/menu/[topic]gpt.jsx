@@ -83,7 +83,7 @@ export default function Sandia() {
       setCurrent({
         id: "null",
         content:
-          "Parece que ya has visto todo, ¿Te parece si echamos un vistazo a lo que aprendimos?"
+          "Parece que ya has visto todo, ¿Te parece si echamos un vistazo a lo que aprendimos?",
       });
     }
     if (sandiasByTopic.length > 0 && !current) {
@@ -161,17 +161,17 @@ export default function Sandia() {
     updatedSandiasByTopic(randomSandia);
   };
 
-  const handleTestCounter = ()=>{
+  const handleTestCounter = () => {
     setTestCt((prevTestCt) =>
       prevTestCt === 10 ? (setShowTest(true), 1) : prevTestCt + 1
     );
-  }
+  };
 
   const handleNextButton = () => {
     if ((!current || current.id === "null") && seenSandias.length === 0) {
       loadRandomSandia();
-      handleTestCounter()
-      setLastSandia(true)
+      handleTestCounter();
+      setLastSandia(true);
     } else if (seenSandias.length >= 1) {
       let filteredSeenSandias;
       if (topic === "default") {
@@ -182,7 +182,7 @@ export default function Sandia() {
         );
         if (filteredSeenSandias.length === 0) {
           loadRandomSandia();
-          handleTestCounter()
+          handleTestCounter();
         }
       }
 
@@ -197,28 +197,28 @@ export default function Sandia() {
         currentIndex < filteredSeenSandias.length - 1
       ) {
         setCurrent(filteredSeenSandias[currentIndex + 1]);
-        handleTestCounter()
+        handleTestCounter();
       } else if (sandiasByTopic.length === 0 && seenSandias.length > 1) {
         setCurrent({
           id: "null",
           content:
-            "Parece que acabaste con todo, ¿Te parece si vemos lo anterior?."
+            "Parece que acabaste con todo, ¿Te parece si vemos lo anterior?.",
         });
-        setTimeout(()=>{
-          setSandiasByTopic(seenSandias)
-          handleNextButton()
-          setTestCt()
-          handleTestCounter()
+        setTimeout(() => {
+          setSandiasByTopic(seenSandias);
+          handleNextButton();
+          setTestCt();
+          handleTestCounter();
           return;
-        }, 1000)
+        }, 1000);
       } else if (sandiasByTopic === 0 && lastSandia) {
         setCurrent({
           id: "null",
           content:
-            "Parece que ya terminaste, ¿Te parece si echamos un vistazo a lo que aprendimos?"
+            "Parece que ya terminaste, ¿Te parece si echamos un vistazo a lo que aprendimos?",
         });
-        handleNextButton()
-        setTestCt()
+        handleNextButton();
+        setTestCt();
       }
     }
   };
@@ -259,7 +259,7 @@ export default function Sandia() {
           background
             ? `/backgrounds/${background}`
             : "/backgrounds/bg-booksflying.webp"
-        }')`
+        }')`,
       }}
     >
       <Navbar />
@@ -314,10 +314,14 @@ export default function Sandia() {
                     <div className="sm:pl-20 sm:pr-8 sm:pt-7 text-center">
                       <SpeechBubble
                         text={
-                          showReference ? current?.reference : current?.content
+                          showReference
+                            ? current?.reference ||
+                              "a ver a ver... deja lo pienso"
+                            : current?.content ||
+                              "a ver a ver... deja lo pienso"
                         }
-                        height=""
-                        width=""
+                        //height=""
+                        //width=""
                       />
                     </div>
                     <div className="flex justify-between items-center px-3">

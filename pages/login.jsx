@@ -118,7 +118,7 @@ export default function Login() {
           username: userJson.data.users.name,
           avatar: userJson.data.users.avatar,
         };
-        console.log("Usuario obtenido con éxito", userJson?.data);
+        console.log("Usuario obtenido con éxito");
         localStorage.setItem("exp", JSON.stringify(exp));
         localStorage.setItem(
           "username",
@@ -184,9 +184,24 @@ export default function Login() {
                 inicia sesión con:
               </p>
               <div className="flex gap-6 mb-4">
-                <Image src="fb_icon.svg" width={40} height={40}></Image>
-                <Image src="google_icon.svg" width={40} height={40}></Image>
-                <Image src="tiktok_icon.svg" width={40} height={40}></Image>
+                <Image
+                  src="fb_icon.svg"
+                  alt="facebook"
+                  width={40}
+                  height={40}
+                ></Image>
+                <Image
+                  src="google_icon.svg"
+                  alt="google"
+                  width={40}
+                  height={40}
+                ></Image>
+                <Image
+                  src="tiktok_icon.svg"
+                  alt="tiktok"
+                  width={40}
+                  height={40}
+                ></Image>
               </div>
             </div>
           </SignInButton>

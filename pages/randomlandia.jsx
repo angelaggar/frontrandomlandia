@@ -112,7 +112,7 @@ const Randomlandia = () => {
               return (
                 index == mostarIndex && (
                   <CarruselTemas
-                    key={`unico-${index}`}
+                    key={`unico2-${index}`}
                     icono={unico.icono}
                     alt={unico.alt}
                     tema={unico.tema}
@@ -129,6 +129,7 @@ const Randomlandia = () => {
               {unicos.map((unico, index) => {
                 return (
                   <button
+                    key={`unico3-${index}`}
                     className={
                       index == mostarIndex
                         ? "h-6 w-6 m-1 rounded-full bg-[#21643f] "
@@ -214,7 +215,7 @@ const Randomlandia = () => {
             {perspectiva.map((unico, index) => {
               return (
                 <Perspectiva
-                  key={`unico-${index}`}
+                  key={`unico4-${index}`}
                   icono={unico.icono}
                   alt={unico.alt}
                   tema={unico.tema}
@@ -229,7 +230,7 @@ const Randomlandia = () => {
               return (
                 index == mostarIndexPers && (
                   <CarruselTemas
-                    key={`unico-${index}`}
+                    key={`unico5-${index}`}
                     icono={unico.icono}
                     alt={unico.alt}
                     tema={unico.tema}
@@ -246,6 +247,7 @@ const Randomlandia = () => {
               {perspectiva.map((unico, index) => {
                 return (
                   <button
+                    key={`unico6-${index}`}
                     className={
                       index == mostarIndexPers
                         ? "h-6 w-6 m-1 rounded-full bg-[#21643f] "

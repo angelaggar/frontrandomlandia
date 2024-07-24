@@ -9,23 +9,23 @@ const RandySpeechBubble = ({
   imageSrc = "/randy.png", // Default image path
   imageAlt = "Randy the cat looking happy and content", // Default alt text
   width = "332.25px", // Default width
-  height = "329.34px" // Default height
+  height = "329.34px", // Default height
 }) => {
   const triangleClasses = classNames({
     "absolute bottom-[-10px] w-0 h-0 border-t-[10px] border-t-cream border-x-[10px] border-x-transparent": true,
     "left-6": trianglePosition === "left",
-    "right-6": trianglePosition === "right"
+    "right-6": trianglePosition === "right",
   });
 
   const randyClasses = classNames({
     "absolute bottom-[-106px] w-24 h-auto": true,
     "left-[-0.75rem]": trianglePosition === "left",
-    "right-[-0.75rem]": trianglePosition === "right"
+    "right-[-0.75rem]": trianglePosition === "right",
   });
 
   const bubbleStyles = {
     width: width,
-    height: height
+    height: height,
   };
 
   return (
@@ -48,12 +48,12 @@ const RandySpeechBubble = ({
 };
 
 RandySpeechBubble.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired || "hola",
   trianglePosition: PropTypes.oneOf(["left", "right"]),
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
 };
 
 export default RandySpeechBubble;

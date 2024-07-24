@@ -1,35 +1,35 @@
-// components/TestBubble.js
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const TestBubble = ({
   text,
-  trianglePosition,
-  width,
-  height,
+  trianglePosition = "left",
+  width = "332.25px",
+  height = "329.34px",
   result,
   content,
   isQuestion,
   isLoading,
   setAnswer,
   isFinal,
-  correctAnswersCount
+  correctAnswersCount,
 }) => {
   const triangleClasses = classNames({
     "absolute bottom-[-15px] w-0 h-0 border-t-[15px] border-t-cream border-x-[15px] border-x-transparent": true,
     "left-6": trianglePosition === "left",
-    "right-6": trianglePosition === "right"
+    "right-6": trianglePosition === "right",
   });
 
   const bubbleStyles = {
     width: width,
-    height: height
+    height: height,
   };
 
-  const finalMessage = correctAnswersCount === 3
-    ? "¡Felicidades! Has respondido correctamente a todas las preguntas."
-    : "¡No te desanimes! Aquí tienes una frase célebre para motivarte: 'El éxito es la suma de pequeños esfuerzos repetidos día tras día.'";
+  const finalMessage =
+    correctAnswersCount === 3
+      ? "¡Felicidades! Has respondido correctamente a todas las preguntas."
+      : "¡No te desanimes! Aquí tienes una frase célebre para motivarte: 'El éxito es la suma de pequeños esfuerzos repetidos día tras día.'";
 
   return (
     <div
@@ -45,8 +45,12 @@ const TestBubble = ({
               <p className="w-auto flex text-center">{finalMessage}</p>
             ) : (
               <>
-                {!isQuestion && <p className="w-auto flex text-center">{result}</p>}
-                <p className="w-auto flex text-center">{isQuestion ? text : content}</p>
+                {!isQuestion && (
+                  <p className="w-auto flex text-center">{result}</p>
+                )}
+                <p className="w-auto flex text-center">
+                  {isQuestion ? text : content}
+                </p>
                 {isQuestion && (
                   <div className="font-lucky text-white flex justify-around items-center">
                     <button
@@ -74,7 +78,7 @@ const TestBubble = ({
 };
 
 TestBubble.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired || "hola",
   trianglePosition: PropTypes.oneOf(["left", "right"]),
   width: PropTypes.string,
   height: PropTypes.string,
@@ -84,16 +88,7 @@ TestBubble.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   setAnswer: PropTypes.func.isRequired,
   isFinal: PropTypes.bool.isRequired,
-  correctAnswersCount: PropTypes.number.isRequired
-};
-
-TestBubble.defaultProps = {
-  trianglePosition: "left",
-  width: "332.25px", // Default width
-  height: "329.34px", // Default height
-  result: null,
-  content: null
+  correctAnswersCount: PropTypes.number.isRequired,
 };
 
 export default TestBubble;
-

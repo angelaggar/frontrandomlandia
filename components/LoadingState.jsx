@@ -2,10 +2,7 @@ import RandyTextRight from "./RandyTextRight";
 
 export default function LoadingPage() {
   return (
-    <div
-      class="text-center"
-      className="w-screen h-screen flex justify-center items-center bg-oldwhite/70"
-    >
+    <div className="w-screen h-screen text-center flex justify-center items-center bg-oldwhite/70">
       <div role="status" className="flex flex-col justify-center gap-8">
         <div className="flex flex-col justify-center items-center">
           <div className="p-6">
@@ -16,7 +13,7 @@ export default function LoadingPage() {
           </div>
           <svg
             aria-hidden="true"
-            class="inline w-32 h-32 text-white animate-spin dark:text-gray-600 fill-lgreen"
+            className="inline w-32 h-32 text-white animate-spin dark:text-gray-600 fill-lgreen"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +28,7 @@ export default function LoadingPage() {
             />
           </svg>
         </div>
-        <span class="sr-only">Loading...</span>
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
